@@ -26,8 +26,8 @@ def prepare_all_user_data():
     for user in users:
         task_list = []
         for task in todos:
-          if task["userId"] == user["id"]:
-             task_list.append({
+            if task["userId"] == user["id"]:
+                task_list.append({
                 "username": user["username"],
                 "task": task["title"],
                 "completed": task["completed"],
@@ -48,4 +48,3 @@ def export_all_to_json():
 
 if __name__ == "__main__":
     export_all_to_json()
-
