@@ -28,9 +28,9 @@ def prepare_all_user_data():
         for task in todos:
             if task["userId"] == user["id"]:
                 task_list.append({
-                "username": user["username"],
-                "task": task["title"],
-                "completed": task["completed"],
+                    "username": user["username"],
+                    "task": task["title"],
+                    "completed": task["completed"],
                 })
         all_user_data[user["id"]] = task_list
 
