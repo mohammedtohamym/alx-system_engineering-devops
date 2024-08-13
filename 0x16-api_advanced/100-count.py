@@ -2,6 +2,7 @@
 """Count the occurences of word in title"""
 import requests
 
+
 def count_words(subreddit, word_list, after='', count=None):
     """Calculate the frequency of a specific word within a set of titles"""
     if count is None:
