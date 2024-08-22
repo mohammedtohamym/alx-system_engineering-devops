@@ -1,13 +1,11 @@
-# puppet file to fix nginx server
-
-file { '/etc/default/nginx':
-  ensure => present,
-  content => "ULIMIT='-n 4096'",
-  mode   => '0644',
+#  fix our stack so that we get to 0
+file { 'replace last line':
+    ensure  => present,
+    path    => '/etc/default/nginx',
+    content => 'ULIMIT="-n 4096"',
 }
 
 service { 'nginx':
-  ensure     => running,
-  hasrestart => true,
-  subscribe  => [ File['/etc/default/nginx'] ],
+    ensure    => running,
+    subscribe => File['/etc/default/nginx']
 }
