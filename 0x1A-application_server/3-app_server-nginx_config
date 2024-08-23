@@ -22,7 +22,7 @@ server {
 
     # Redirecting /redirect_me to a specific YouTube video
     location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        return 301 https://http.cat/images/301.jpg;
     }
 
     error_page 404 /404.html;  # Custom page for 404 errors
