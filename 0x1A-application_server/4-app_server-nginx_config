@@ -1,0 +1,34 @@
+server {
+    listen 80;  # Listen on port 80 for IPv4 connections
+    listen [::]:80 default_server ipv6only=on;  # Listen on port 80 for IPv6 with default server enabled and IPv6 only
+
+    server_name 54.158.179.144;  # Set the server's IP address as the domain name
+
+    # Add a custom HTTP header in the response
+    add_header X-Served-By 29159-web-01;
+
+    root /var/www/html;  # Define the root directory for serving static files
+    index index.html;  # Specify the default file to serve
+
+    # Route requests to /airbnb-onepage/ to the AirBnB_clone_v2 application
+    location /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+    }
+
+    # Handle dynamic routing for /airbnb-dynamic/number_odd_or_even/ followed by a number
+    location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+        proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+    }
+
+    # Route requests to /api to the AirBnB_clone_v3 API
+    location /api {
+        proxy_pass http://127.0.0.1:5002/api;
+    }
+
+    # Redirect /redirect_me to a specific YouTube video
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    error_page 404 /404.html;  # Serve a custom page for 404 errors
+}

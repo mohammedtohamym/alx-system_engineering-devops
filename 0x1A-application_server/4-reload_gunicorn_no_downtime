@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Gracefully reload the gunicorn worker processes without downtime
+
+kill -HUP $(ps -C gunicorn -o pid= | head -n 1)
